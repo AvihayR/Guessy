@@ -4,6 +4,8 @@ import StartGameScreen from './screens/StartGameScreen'
 import GameScreen from './screens/GameScreen'
 import diceBgImg from './assets/images/background.png'
 import { useState } from 'react'
+import Colors from './constants/colors'
+
 
 export default function App() {
   const [pickedNumber, setPickedNumber] = useState(null)
@@ -15,7 +17,7 @@ export default function App() {
 
   return (
     <>
-      <LinearGradient colors={['#4a0327', '#ddb52f']} style={styles.rootScreen}>
+      <LinearGradient colors={[Colors.primary800, Colors.secondary600]} style={styles.rootScreen}>
         <ImageBackground
           source={diceBgImg}
           resizeMode='cover'
