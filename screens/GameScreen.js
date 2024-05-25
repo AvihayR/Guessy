@@ -1,12 +1,16 @@
 import { View, Text, StyleSheet } from "react-native"
 import Title from "../components/Title"
+import utils from "../utils"
+import { useState } from "react"
 
-export default function GameScreen() {
+export default function GameScreen({ chosenNumber }) {
+    const initialGuess = utils.generateRandomBetween(1, 100, chosenNumber)
+    const [currentGuess, setCurrentGuess] = useState(initialGuess)
 
     return (
         <View style={styles.screen}>
             <Title>Opponent's Guess</Title>
-            {/* GUESS */}
+            <Text>{currentGuess}</Text>
             <View>
                 <Text>Higher or lower?</Text>
                 {/* + */}

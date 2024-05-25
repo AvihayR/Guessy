@@ -6,13 +6,12 @@ import diceBgImg from './assets/images/background.png'
 import { useState } from 'react'
 import Colors from './constants/colors'
 
-
 export default function App() {
   const [pickedNumber, setPickedNumber] = useState(null)
   let screen = <StartGameScreen onPickNumber={setPickedNumber} />
 
   if (pickedNumber) {
-    screen = <GameScreen />
+    screen = <GameScreen chosenNumber={pickedNumber} />
   }
 
   return (

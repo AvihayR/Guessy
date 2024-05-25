@@ -3,6 +3,7 @@ import PrimaryButton from "../components/PrimaryButton"
 import { useState } from "react"
 import Colors from "../constants/colors"
 
+
 export default function StartGameScreen({ onPickNumber }) {
     const [enteredNumber, setEnteredNumber] = useState('')
 
