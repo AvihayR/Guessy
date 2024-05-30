@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet } from "react-native"
-import Title from "../components/Title"
+import Title from "../components/ui/Title"
 import utils from "../utils"
 import { useState } from "react"
+import NumberContainer from "../components/game/NumberContainer"
 
 export default function GameScreen({ chosenNumber }) {
     const initialGuess = utils.generateRandomBetween(1, 100, chosenNumber)
@@ -10,7 +11,8 @@ export default function GameScreen({ chosenNumber }) {
     return (
         <View style={styles.screen}>
             <Title>Opponent's Guess</Title>
-            <Text>{currentGuess}</Text>
+            <NumberContainer>{currentGuess}</NumberContainer>
+
             <View>
                 <Text>Higher or lower?</Text>
                 {/* + */}

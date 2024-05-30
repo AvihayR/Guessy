@@ -5,7 +5,8 @@ const Colors = {
     primary700: '#60173f',
     primary800: '#4a0327',
     secondary500: '#ddb52d',
-    secondary600: '#ddb52f'
+    secondary600: '#ddb52f',
+    halfTransparent: '#e1e1e111'
 }
 
 export default Colors
