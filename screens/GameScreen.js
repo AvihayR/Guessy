@@ -4,6 +4,9 @@ import { generateRandomBetween } from "../utils"
 import { useEffect, useState } from "react"
 import NumberContainer from "../components/game/NumberContainer"
 import PrimaryButton from "../components/ui/PrimaryButton"
+import Card from "../components/ui/Card"
+import InstructionText from "../components/ui/InstructionText"
+
 
 let minNumber = 1
 let maxNumber = 100
@@ -41,13 +44,13 @@ export default function GameScreen({ chosenNumber, onGameOver }) {
             <Title>Opponent's Guess</Title>
             <NumberContainer>{currentGuess}</NumberContainer>
 
-            <View>
-                <Text>Higher or lower?</Text>
+            <Card>
+                <InstructionText>Higher or lower?</InstructionText>
                 <View>
                     <PrimaryButton onPress={() => { nextGuessHandler('higher') }}>+</PrimaryButton>
                     <PrimaryButton onPress={() => { nextGuessHandler('lower') }}>-</PrimaryButton>
                 </View>
-            </View>
+            </Card>
             <View>
                 {/* LOG ROUNDS */}
             </View>
