@@ -1,18 +1,22 @@
 import { View, Text, StyleSheet, Alert } from "react-native"
 import Title from "../components/ui/Title"
 import { generateRandomBetween } from "../utils"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import NumberContainer from "../components/game/NumberContainer"
 import PrimaryButton from "../components/ui/PrimaryButton"
-
 
 let minNumber = 1
 let maxNumber = 100
 
-export default function GameScreen({ chosenNumber }) {
-    const initialGuess = generateRandomBetween(minNumber, maxNumber, chosenNumber)
+export default function GameScreen({ chosenNumber, onGameOver }) {
+    const initialGuess = generateRandomBetween(1, 100, chosenNumber)
     const [currentGuess, setCurrentGuess] = useState(initialGuess)
 
+    useEffect(() => {
+        if (currentGuess === chosenNumber) {
+            onGameOver()
+        }
+    }, [currentGuess, chosenNumber])
 
     function nextGuessHandler(direction) {
         if ((direction === 'lower' && currentGuess < chosenNumber) ||
@@ -27,14 +31,8 @@ export default function GameScreen({ chosenNumber }) {
         }
 
         const newRandomNumber = generateRandomBetween(minNumber, maxNumber, currentGuess)
-
-        if (newRandomNumber === chosenNumber) {
-            setCurrentGuess(newRandomNumber)
-            return console.log('Horray! 🎉')
-        }
-
         setCurrentGuess(newRandomNumber)
-        console.log('min:', minNumber, 'Max:', maxNumber)
+        // console.log('min:', minNumber, 'Max:', maxNumber)
     }
 
 
