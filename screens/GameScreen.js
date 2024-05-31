@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Alert } from "react-native"
+import { View, StyleSheet, Alert } from "react-native"
 import Title from "../components/ui/Title"
 import { generateRandomBetween } from "../utils"
 import { useEffect, useState } from "react"
@@ -45,10 +45,14 @@ export default function GameScreen({ chosenNumber, onGameOver }) {
             <NumberContainer>{currentGuess}</NumberContainer>
 
             <Card>
-                <InstructionText>Higher or lower?</InstructionText>
-                <View>
-                    <PrimaryButton onPress={() => { nextGuessHandler('higher') }}>+</PrimaryButton>
-                    <PrimaryButton onPress={() => { nextGuessHandler('lower') }}>-</PrimaryButton>
+                <InstructionText style={styles.instructionText}>Higher or lower?</InstructionText>
+                <View style={styles.btnsContainer}>
+                    <View style={styles.btnContainer}>
+                        <PrimaryButton onPress={() => { nextGuessHandler('higher') }} txtStyle={styles.primaryButton}>+</PrimaryButton>
+                    </View>
+                    <View style={styles.btnContainer}>
+                        <PrimaryButton onPress={() => { nextGuessHandler('lower') }} txtStyle={styles.primaryButton}>-</PrimaryButton>
+                    </View>
                 </View>
             </Card>
             <View>
@@ -65,4 +69,18 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         paddingTop: 36
     },
+    btnsContainer: {
+        flexDirection: 'row',
+        marginVertical: 4,
+    },
+    btnContainer: {
+        flex: 1
+    },
+    instructionText: {
+        marginBottom: 12
+    },
+    primaryButton: {
+        fontSize: 24,
+        fontWeight: 500,
+    }
 })
