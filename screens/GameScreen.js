@@ -8,6 +8,7 @@ import Card from "../components/ui/Card"
 import InstructionText from "../components/ui/InstructionText"
 import Foundation from '@expo/vector-icons/Foundation'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
+import GuessLogItem from "../components/game/GuessLogItem"
 
 
 let minNumber = 1
@@ -66,9 +67,10 @@ export default function GameScreen({ chosenNumber, onGameOver }) {
                     </View>
                 </View>
             </Card>
-            <View>
+            <View style={styles.listContainer}>
                 <FlatList
-                    data={guessRounds} renderItem={(itemData) => <Text>{itemData.item}</Text>}
+                    data={guessRounds}
+                    renderItem={(itemData) => <GuessLogItem roundNumber={guessRounds.length - itemData.index} guess={itemData.item} />}
                     keyExtractor={(item) => item}
                 />
             </View>
@@ -96,5 +98,10 @@ const styles = StyleSheet.create({
     primaryButton: {
         fontSize: 24,
         fontWeight: 500,
+    },
+    listContainer: {
+        flex: 1,
+        padding: 16,
+        margin: 6
     }
 })
