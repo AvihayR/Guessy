@@ -1,6 +1,6 @@
 import { View, StyleSheet, Alert, Text, FlatList } from "react-native"
 import Title from "../components/ui/Title"
-import { generateRandomBetween } from "../utils"
+import { createId, generateRandomBetween } from "../utils"
 import { useEffect, useState } from "react"
 import NumberContainer from "../components/game/NumberContainer"
 import PrimaryButton from "../components/ui/PrimaryButton"
@@ -25,7 +25,7 @@ export default function GameScreen({ chosenNumber, onGameOver }) {
     }, [])
     useEffect(() => {
         if (currentGuess === chosenNumber) {
-            onGameOver()
+            onGameOver(guessRounds.length)
         }
     }, [currentGuess, chosenNumber])
 
@@ -71,7 +71,7 @@ export default function GameScreen({ chosenNumber, onGameOver }) {
                 <FlatList
                     data={guessRounds}
                     renderItem={(itemData) => <GuessLogItem roundNumber={guessRounds.length - itemData.index} guess={itemData.item} />}
-                    keyExtractor={(item) => item}
+                    keyExtractor={(item) => { return item + createId() }}
                 />
             </View>
         </View>
