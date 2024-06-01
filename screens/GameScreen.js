@@ -18,6 +18,10 @@ export default function GameScreen({ chosenNumber, onGameOver }) {
     const [currentGuess, setCurrentGuess] = useState(initialGuess)
 
     useEffect(() => {
+        minNumber = 1
+        maxNumber = 100
+    }, [])
+    useEffect(() => {
         if (currentGuess === chosenNumber) {
             onGameOver()
         }

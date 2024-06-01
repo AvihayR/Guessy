@@ -10,37 +10,43 @@ import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 
 export default function App() {
+
   const [pickedNumber, setPickedNumber] = useState(null)
   const [isGameOver, setGameIsOver] = useState(false)
-  let screen = <StartGameScreen onPickNumber={setPickedNumber} />
+  const [guessRounds, setGuessRounds] = useState(0)
 
   const [isFontsLoaded] = useFonts({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
   })
 
-  // Prevent the splash screen from auto-hiding
   useEffect(() => {
     SplashScreen.preventAutoHideAsync()
   }, [])
-
-  // Hide the splash screen when the fonts are loaded
   useEffect(() => {
     if (isFontsLoaded) {
       SplashScreen.hideAsync()
     }
   }, [isFontsLoaded])
 
+
+  let screen = <StartGameScreen onPickNumber={setPickedNumber} />
+
   if (pickedNumber) {
     screen = <GameScreen chosenNumber={pickedNumber} onGameOver={gameOverHandler} />
   }
   if (pickedNumber && isGameOver) {
-    screen = <GameOverScreen />
+    screen = <GameOverScreen roundsNumber={guessRounds} pickedNumber={pickedNumber} onStartNewGame={startNewGameHandler} />
   }
 
   function gameOverHandler() {
-    console.log('Game over! 🎉')
     setGameIsOver(true)
+  }
+
+  function startNewGameHandler() {
+    setPickedNumber(null)
+    setGameIsOver(false)
+    setGuessRounds(0)
   }
 
   return (
