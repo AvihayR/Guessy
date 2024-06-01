@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         paddingHorizontal: 24,
-        paddingTop: 36
+        paddingTop: 60
     },
     btnsContainer: {
         flexDirection: 'row',
