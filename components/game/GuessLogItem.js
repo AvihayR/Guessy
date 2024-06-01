@@ -4,8 +4,8 @@ import Colors from "../../constants/colors"
 export default function GuessLogItem({ roundNumber, guess }) {
     return (
         <View style={styles.listItem}>
-            <Text style={styles.itemTxt}>#{roundNumber}</Text>
-            <Text style={styles.itemTxt}>Opponent's Guess: {guess}</Text>
+            <Text style={styles.itemTxt}><Text style={[styles.highlight]}>#{roundNumber}</Text></Text>
+            <Text style={styles.itemTxt}>Opponent's Guess: <Text style={[styles.boldTxt, styles.highlight]}>{guess}</Text> </Text>
         </View>
     )
 }
@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
         borderColor: Colors.primary800,
         borderWidth: 1,
         borderRadius: 40,
-        padding: 12,
+        paddingVertical: 12,
+        paddingHorizontal: 40,
         marginVertical: 8,
         backgroundColor: Colors.secondary500,
         flexDirection: 'row',
@@ -29,5 +30,11 @@ const styles = StyleSheet.create({
     },
     itemTxt: {
         fontFamily: 'open-sans'
+    },
+    highlight: {
+        color: Colors.primary500
+    },
+    boldTxt: {
+        fontFamily: 'open-sans-bold',
     }
 })
