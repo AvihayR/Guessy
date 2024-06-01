@@ -6,6 +6,8 @@ import NumberContainer from "../components/game/NumberContainer"
 import PrimaryButton from "../components/ui/PrimaryButton"
 import Card from "../components/ui/Card"
 import InstructionText from "../components/ui/InstructionText"
+import Foundation from '@expo/vector-icons/Foundation'
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
 
 let minNumber = 1
@@ -48,10 +50,14 @@ export default function GameScreen({ chosenNumber, onGameOver }) {
                 <InstructionText style={styles.instructionText}>Higher or lower?</InstructionText>
                 <View style={styles.btnsContainer}>
                     <View style={styles.btnContainer}>
-                        <PrimaryButton onPress={() => { nextGuessHandler('higher') }} txtStyle={styles.primaryButton}>+</PrimaryButton>
+                        <PrimaryButton onPress={() => { nextGuessHandler('higher') }} txtStyle={styles.primaryButton}>
+                            <MaterialCommunityIcons name="plus-circle-outline" size={30} />
+                        </PrimaryButton>
                     </View>
                     <View style={styles.btnContainer}>
-                        <PrimaryButton onPress={() => { nextGuessHandler('lower') }} txtStyle={styles.primaryButton}>-</PrimaryButton>
+                        <PrimaryButton onPress={() => { nextGuessHandler('lower') }} txtStyle={styles.primaryButton}>
+                            <Foundation name="minus-circle" size={32} />
+                        </PrimaryButton>
                     </View>
                 </View>
             </Card>
