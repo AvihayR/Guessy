@@ -29,12 +29,12 @@ const styles = StyleSheet.create({
         shadowRadius: 3
     },
     itemTxt: {
-        fontFamily: 'open-sans'
+        fontFamily: 'sansReg'
     },
     highlight: {
         color: Colors.primary500
     },
     boldTxt: {
-        fontFamily: 'open-sans-bold',
+        fontFamily: 'sansBold',
     }
 })

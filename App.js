@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { ImageBackground, StyleSheet, SafeAreaView, StatusBar } from 'react-native'
+import { useCallback, useEffect, useState } from 'react'
+import { ImageBackground, StyleSheet, SafeAreaView, StatusBar, Text } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import StartGameScreen from './screens/StartGameScreen'
 import GameScreen from './screens/GameScreen'
@@ -15,19 +15,26 @@ export default function App() {
   const [isGameOver, setGameIsOver] = useState(false)
   const [guessRounds, setGuessRounds] = useState(0)
 
-  const [isFontsLoaded] = useFonts({
-    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+  const [fontsLoaded, fontError] = useFonts({
+    sansReg: require('./assets/fonts/sansReg.ttf'),
+    sansBold: require('./assets/fonts/sansBold.ttf'),
   })
 
+
+
   useEffect(() => {
-    SplashScreen.preventAutoHideAsync()
-  }, [])
-  useEffect(() => {
-    if (isFontsLoaded) {
+    if (fontsLoaded) {
       SplashScreen.hideAsync()
+      console.log('ready')
+      console.log(fontError)
     }
-  }, [isFontsLoaded])
+    else {
+      SplashScreen.preventAutoHideAsync()
+      console.log('not ready yet')
+      screen = <Text>Hello</Text>
+    }
+
+  }, [fontsLoaded])
 
 
   let screen = <StartGameScreen onPickNumber={setPickedNumber} />
@@ -60,7 +67,10 @@ export default function App() {
           style={styles.rootScreen}
           imageStyle={styles.bgImage}
         >
-          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+          <SafeAreaView style={styles.rootScreen}>
+            {screen}
+            {/* <Text style={styles.boldTxt}>Hello</Text> */}
+          </SafeAreaView>
         </ImageBackground>
       </LinearGradient>
     </>
@@ -73,5 +83,8 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     opacity: 0.15
-  }
+  },
+  // boldTxt: {
+  //   fontFamily: 'sansBold',
+  // }
 })

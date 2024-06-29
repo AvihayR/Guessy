@@ -60,13 +60,13 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     summaryTxt: {
-        fontFamily: 'open-sans',
+        fontFamily: 'sansReg',
         fontSize: 22,
         textAlign: 'center',
         marginBottom: 24
     },
     highlight: {
-        fontFamily: 'open-sans-bold',
+        fontFamily: 'sansBold',
         color: Colors.primary500
     },
     lottie: {
